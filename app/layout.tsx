@@ -48,7 +48,7 @@ export default function RootLayout({
             lang="en"
             className={`${sst.variable} ${mont.variable} antialiased`}
         >
-            <body className="font-sst bg-primary-bg text-white">{children}</body>
+            <body className="font-sst bg-primary-bg text-white selection:bg-blue selection:text-white">{children}</body>
         </html>
     );
 }
