@@ -10,4 +10,11 @@
     --color-progress-bar: #334155;      /* Progress bar */
     --color-ps-plus: #FACC00;           /* PS Plus yellow color */
     --color-divider: #333C4B;           /* Dividers color */
+
+    --radius-normal: 14px;
+}
+
+@theme inline {
+  --font-sst: var(--font-sst);
+  --font-mont: var(--font-mont);
 }
