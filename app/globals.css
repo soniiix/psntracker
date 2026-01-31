@@ -1,20 +1,45 @@
 @import "tailwindcss";
 
 @theme {
-    --background-image-blue-gradient: linear-gradient(-124deg, #173FCF 0%, #1649FF 100%);
-    --color-primary-bg: #141A2A;        /* Primary background color */
-    --color-secondary-bg: #1C2637;      /* Secondary background color */
-    --color-alternate-bg: #2D3546;      /* Alternate background color */
-    --color-neutral: #C6C9CD;           /* Neutral text color */
-    --color-blue: #1649FF;              /* Primary color / accent color */
-    --color-progress-bar: #334155;      /* Progress bar */
-    --color-ps-plus: #FACC00;           /* PS Plus yellow color */
-    --color-divider: #333C4B;           /* Dividers color */
+    --background-image-blue-gradient: linear-gradient(-124deg, #173fcf 0%, #1649ff 100%);
+    --color-primary-bg: #141a2a; 		/* Primary background color */
+    --color-secondary-bg: #1c2637; 	/* Secondary background color */
+    --color-alternate-bg: #2d3546; 	/* Alternate background color */
+    --color-neutral: #c6c9cd; 			/* Neutral text color */
+    --color-blue: #1649ff; 			/* Primary color / accent color */
+    --color-progress-bar: #334155; 	/* Progress bar */
+    --color-ps-plus: #facc00; 			/* PS Plus yellow color */
+    --color-divider: #333c4b; 			/* Dividers color */
 
     --radius-normal: 14px;
 }
 
 @theme inline {
-  --font-sst: var(--font-sst);
-  --font-mont: var(--font-mont);
+    --font-sst: var(--font-sst);
+    --font-mont: var(--font-mont);
+}
+
+@layer utilities {
+    /* TODO: not perfect, to be improved */
+    .top-blue-glow {
+        height: 40px;
+        width: 400px;
+        background-color: rgba(22, 73, 255, 1);
+        filter: blur(100px);
+        overflow: visible;
+        position:absolute;
+        top: 20px;
+        z-index: -10;
+    }
+
+	.bottom-blue-glow {
+        height: 500px;
+        width: 800px;
+        background-image: radial-gradient(closest-side, rgb(22 73 255 / 0.05), #141a2a);
+        position: absolute;
+        bottom: -250px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: -10;
+    }
 }
