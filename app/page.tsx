@@ -1,15 +1,28 @@
 "use client";
 import { ArrowRightIcon, MagnifyingGlassIcon } from "@phosphor-icons/react";
+import { useState } from "react";
 
 export default function Home() {
+    const [error, setError] = useState<string | null>(null);
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const psnId = formData.get("psn-id") as string;
     
-        if (psnId.trim()) {
-            console.log("PSN ID récupéré:", psnId);
+        if (!psnId.trim()) {
+            setError("Please enter a PSN ID.");
+            return;
         }
+
+        // Validate PSN ID format (alphanumeric, underscores, hyphens, 3-16 characters)
+        if (!/^[a-zA-Z0-9_-]{3,16}$/.test(psnId)) {
+            setError("Invalid PSN ID format. Please try again.");
+            return;
+        }
+
+        // TODO: Check if PSN ID exists using the API
+        // TODO: If it exists, navigate to the profile page
     }
 
     return (
@@ -21,17 +34,17 @@ export default function Home() {
                 <span className="text-2xl sm:text-3xl font-light">Track and analyze your PlayStation trophy progress.</span>
 
                 <form 
-                    className="bg-secondary-bg focus-within:outline-2 focus-within:outline-offset-3 focus-within:outline-blue mt-8 pl-4 pr-1.5 py-1.5 rounded-normal text-neutral w-full max-w-[530px] text-lg flex flex-row items-center justify-between gap-2" 
+                    className={`bg-secondary-bg focus-within:outline-2 focus-within:outline-offset-3 mt-8 pl-4 pr-1.5 py-1.5 rounded-normal text-neutral w-full max-w-[530px] text-lg flex flex-row items-center justify-between gap-2 ${error ? ' focus-within:outline-red-500' : 'focus-within:outline-blue'}`}
                     onSubmit={handleSubmit}
                 >
                     <div className="flex items-center gap-3 flex-1">
-                        <MagnifyingGlassIcon size={26} className=" mt-0.5"/>
+                        <MagnifyingGlassIcon size={26} className="mt-0.5"/>
                         <input 
                             type="text" 
                             name="psn-id"
                             placeholder="Enter a PSN ID" 
                             className="flex-1 min-w-0 w-full focus:outline-none placeholder:text-neutral text-white"
-                            required
+                            onInput={() => setError(null)}
                         />
                     </div>
                     <button 
@@ -41,6 +54,9 @@ export default function Home() {
                         Search
                     </button>
                 </form>
+                {error && <div className="w-full max-w-[530px] text-red-500 text-lg mt-2">
+                    <span>Error: {error}</span>
+                </div>}
             </div>
 
             <div className="text-sm flex flex-row items-center justify-center gap-1.5 border px-3 py-1 rounded-[10px] border-neutral">
