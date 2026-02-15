@@ -1,8 +1,10 @@
 "use client";
 import { ArrowRightIcon, MagnifyingGlassIcon } from "@phosphor-icons/react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+    const router = useRouter();
     const [error, setError] = useState<string | null>(null);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -22,7 +24,8 @@ export default function Home() {
         }
 
         // TODO: Check if PSN ID exists using the API
-        // TODO: If it exists, navigate to the profile page
+        // If it exists, navigate to the profile page
+        router.push(`/profile/${psnId}`);
     }
 
     return (
