@@ -2,6 +2,16 @@
 import { ArrowRightIcon, MagnifyingGlassIcon } from "@phosphor-icons/react";
 
 export default function Home() {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const psnId = formData.get("psn-id") as string;
+    
+        if (psnId.trim()) {
+            console.log("PSN ID récupéré:", psnId);
+        }
+    }
+
     return (
         <div className="text-3xl text-center font-normal h-screen flex flex-col items-center justify-between pt-46 pb-6 px-6 relative overflow-hidden">
             <div className="flex flex-col items-center gap-3 relative">
@@ -10,11 +20,15 @@ export default function Home() {
                 <h1 className="font-mont text-4xl sm:text-5xl mb-2">PSN TRACKER</h1>
                 <span className="text-2xl sm:text-3xl font-light">Track and analyze your PlayStation trophy progress.</span>
 
-                <form className="bg-secondary-bg focus-within:outline-2 focus-within:outline-offset-3 focus-within:outline-blue mt-8 pl-4 pr-1.5 py-1.5 rounded-normal text-neutral w-full max-w-[530px] text-lg flex flex-row items-center justify-between gap-2">
+                <form 
+                    className="bg-secondary-bg focus-within:outline-2 focus-within:outline-offset-3 focus-within:outline-blue mt-8 pl-4 pr-1.5 py-1.5 rounded-normal text-neutral w-full max-w-[530px] text-lg flex flex-row items-center justify-between gap-2" 
+                    onSubmit={handleSubmit}
+                >
                     <div className="flex items-center gap-3 flex-1">
                         <MagnifyingGlassIcon size={26} className=" mt-0.5"/>
                         <input 
                             type="text" 
+                            name="psn-id"
                             placeholder="Enter a PSN ID" 
                             className="flex-1 min-w-0 w-full focus:outline-none placeholder:text-neutral text-white"
                             required
