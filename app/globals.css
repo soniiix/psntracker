@@ -20,7 +20,6 @@
 }
 
 @layer utilities {
-    /* TODO: not perfect, to be improved */
     .top-blue-glow {
         height: 40px;
         width: 400px;
@@ -41,5 +40,21 @@
         left: 50%;
         transform: translateX(-50%);
         z-index: -10;
+    }
+
+    .border-l-gradient-rounded {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .border-l-gradient-rounded::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 14px;
+        background-image: linear-gradient(to left, #173FCF 0%, #1649FF 100%);
+        z-index: 0;
     }
 }

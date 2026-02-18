@@ -1,11 +1,19 @@
 "use client";
 import { ArrowRightIcon, MagnifyingGlassIcon } from "@phosphor-icons/react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useRef, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Home() {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const inputRef = useRef<HTMLInputElement>(null);
     const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (searchParams.get("focus") === "true") {
+            inputRef.current?.focus();
+        }
+    }, [searchParams]);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -43,16 +51,18 @@ export default function Home() {
                     <div className="flex items-center gap-3 flex-1">
                         <MagnifyingGlassIcon size={26} className="mt-0.5"/>
                         <input 
+                            ref={inputRef}
                             type="text" 
                             name="psn-id"
                             placeholder="Enter a PSN ID" 
                             className="flex-1 min-w-0 w-full focus:outline-none placeholder:text-neutral text-white"
+                            autoComplete="off"
                             onInput={() => setError(null)}
                         />
                     </div>
                     <button 
                         type="submit" 
-                        className="bg-blue-gradient px-5 py-2 rounded-xl text-white cursor-pointer shrink-0 w-auto"
+                        className="bg-blue-gradient px-5 py-2 rounded-[10px] text-white cursor-pointer shrink-0 w-auto"
                     >
                         Search
                     </button>
