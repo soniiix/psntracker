@@ -3,11 +3,11 @@
 @theme {
     --background-image-blue-gradient: linear-gradient(-124deg, #173FCF 0%, #1649FF 100%);
     --color-primary-bg: #141A2A; 		/* Primary background color */
-    --color-secondary-bg: #1C2637; 	/* Secondary background color */
-    --color-alternate-bg: #2D3546; 	/* Alternate background color */
+    --color-secondary-bg: #1C2637; 	    /* Secondary background color */
+    --color-alternate-bg: #2D3546; 	    /* Alternate background color */
     --color-neutral: #C6C9CD; 			/* Neutral text color */
-    --color-blue: #1649FF; 			/* Primary color / accent color */
-    --color-progress-bar: #334155; 	/* Progress bar */
+    --color-blue: #1649FF; 			    /* Primary color / accent color */
+    --color-progress-bar: #334155; 	    /* Progress bar */
     --color-ps-plus: #FACC00; 			/* PS Plus yellow color */
     --color-divider: #333C4B; 			/* Dividers color */
 
