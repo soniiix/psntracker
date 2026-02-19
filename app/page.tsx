@@ -15,7 +15,7 @@ export default function Home() {
         }
     }, [searchParams]);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const psnId = formData.get("psn-id") as string;
@@ -31,9 +31,17 @@ export default function Home() {
             return;
         }
 
-        // TODO: Check if PSN ID exists using the API
-        // If it exists, navigate to the profile page
-        router.push(`/profile/${psnId}`);
+        // Search the given PSN ID
+        try {
+            const exists = await fetch(`/api/psn/search/${psnId}`).then(r => r.json());
+
+            if (!exists) return setError("PSN ID not found."); // If the PSN ID doesn't exist, show an error message
+            
+            router.push(`/profile/${psnId}`); // If the PSN ID exists, navigate to the profile page
+
+        } catch (err: any) {
+            setError("Something went wrong. Please try again.");
+        }
     }
 
     return (

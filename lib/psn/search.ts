@@ -1,14 +1,18 @@
 import { getAuthenticationToken } from "./auth";
 
-export async function searchAccountId(psnId: string): Promise<{ found: boolean; accountId?: string }> {
+/**
+ * Searches for the given PSN ID using the Sony PlayStation API. 
+ * It checks if the PSN ID exists by making a POST request to the universal search endpoint. 
+ * If an exact match is found, it returns true, otherwise it returns false.
+ * @param psnId
+ * @returns boolean indicating if the PSN ID was found or not.
+ */
+export async function searchPsnId(psnId: string): Promise<boolean> {
     const accessToken = await getAuthenticationToken();
 
     // Dev env case
     if (psnId.toLowerCase() === process.env.PSN_ID) {
-        return {
-            found: true,
-            accountId: "me"
-        };
+        return true;
     }
 
     const res = await fetch(
@@ -35,11 +39,5 @@ export async function searchAccountId(psnId: string): Promise<{ found: boolean; 
             r.socialMetadata?.onlineId?.toLowerCase() === psnId.toLowerCase() // Find the exact match for the PSN ID
     );
 
-    if (!exactMatch) return { found: false };
-
-    return {
-        found: true,
-        accountId: exactMatch.socialMetadata.accountId,
-    };
-
+    return !!exactMatch;
 }

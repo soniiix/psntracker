@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { searchAccountId } from "@/lib/psn/search";
+import { searchPsnId } from "@/lib/psn/search";
 
 export async function GET(
     request: Request,
@@ -8,20 +8,10 @@ export async function GET(
     const { psnId } = await params;
 
     try {
-        const result = await searchAccountId(psnId);
+        const result = await searchPsnId(psnId);
 
-        if (!result.found) {
-            return NextResponse.json(
-                { error: "PSN ID not found" },
-                { status: 404 }
-            );
-        }
-
-        return NextResponse.json(result.accountId);
+        return NextResponse.json(result);
     } catch (err: any) {
-        return NextResponse.json(
-            { error: err.message },
-            { status: 500 }
-        );
+        return NextResponse.json({ error: err.message }, { status: 500 });
     }
 }
