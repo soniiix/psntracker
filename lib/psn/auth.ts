@@ -21,7 +21,7 @@ export async function getAuthenticationToken(): Promise<string> {
     const locationHeader = response.headers.get("location");
 
     if (!locationHeader) {
-        throw new Error("Invalid NPSSO or unexpected response.");
+        throw new Error(`Unexpected response from Sony: ${response.statusText} (${response.status})`);
     }
 
     const code = new URLSearchParams(
