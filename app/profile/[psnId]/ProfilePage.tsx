@@ -6,6 +6,8 @@ import Link from "next/link";
 import ProfileHeader from "@/components/profile/ProfileHeader";
 
 export default function ProfilePage({ psnId }: { psnId: string }) {
+    const router = useRouter();
+
     return (
         <div className="flex flex-col items-start justify-center max-w-[1000px] mx-auto pt-10 gap-5">
             <Link href="/" className="flex flex-row items-center gap-2.5">
