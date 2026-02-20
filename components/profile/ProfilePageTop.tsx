@@ -7,7 +7,7 @@ export default function ProfilePageTop() {
     return (
         <>
             <Link href="/" className="flex flex-row items-center gap-2.5">
-                <img src="/ps-logo.png" alt="PlayStation logo" className="h-6 mb-0.5" />
+                <img src="/images/ps-logo.png" alt="PlayStation logo" className="h-6 mb-0.5" />
                 <h1 className="text-3xl font-bold font-mont">PSN TRACKER</h1>
             </Link>
 

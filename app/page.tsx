@@ -48,7 +48,7 @@ export default function Home() {
         <div className="text-3xl text-center font-normal h-screen flex flex-col items-center justify-between pt-46 pb-6 px-6 relative overflow-hidden">
             <div className="flex flex-col items-center gap-3 relative">
                 <div className="top-blue-glow"></div>
-                <img src="/ps-logo.png" alt="PlayStation logo" className="h-8" />
+                <img src="/images/ps-logo.png" alt="PlayStation logo" className="h-8" />
                 <h1 className="font-mont text-4xl sm:text-5xl mb-2">PSN TRACKER</h1>
                 <span className="text-2xl sm:text-3xl font-light">Track and analyze your PlayStation trophy progress.</span>
 
@@ -70,7 +70,7 @@ export default function Home() {
                     </div>
                     <button 
                         type="submit" 
-                        className="bg-blue-gradient px-5 py-2 rounded-[10px] text-white cursor-pointer shrink-0 w-auto"
+                        className="bg-blue-gradient px-5 py-2 rounded-[10px] text-white cursor-pointer shrink-0 w-auto hover:opacity-90 transition-opacity"
                     >
                         Search
                     </button>

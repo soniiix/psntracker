@@ -7,7 +7,7 @@ export default function NotFound() {
             <ProfilePageTop />
 
             <section className="bg-secondary-bg w-full rounded-normal p-12 border-l-gradient-rounded flex flex-col items-center justify-center gap-6 min-h-[400px]">
-                <img src="/astro-bot.png" className="h-25 mr-5" />
+                <img src="/images/astro-bot.png" className="h-25 mr-5" />
                 <h2 className="text-8xl font-bold font-mont text-blue-gradient -my-3">404</h2>
                 <div className="text-center">
                     <p className="text-lg text-neutral">The PSN ID you entered does not exist.</p>
