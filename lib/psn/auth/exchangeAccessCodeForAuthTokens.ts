@@ -1,4 +1,4 @@
-import { AuthTokens } from "../../types/auth";
+import { AuthTokens } from "@/lib/types/auth";
 
 /**
  * 
