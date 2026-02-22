@@ -1,4 +1,4 @@
-import { getAuthenticationToken } from "./auth/index";
+import { getAuthenticationToken } from "@/lib/psn/auth/index";
 
 /**
  * Searches for the given PSN ID using the Sony PlayStation API. 

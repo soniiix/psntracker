@@ -1,7 +1,7 @@
 import { supabase } from "@/lib/db/supabase";
-import { exchangeNpssoForAccessCode } from "./exchangeNpssoForAccessCode";
-import { exchangeAccessCodeForAuthTokens } from "./exchangeAccessCodeForAuthTokens";
-import { exchangeRefreshTokenForAuthTokens } from "./exchangeRefreshTokenForAuthTokens";
+import { exchangeNpssoForAccessCode } from "@/lib/psn/auth/exchangeNpssoForAccessCode";
+import { exchangeAccessCodeForAuthTokens } from "@/lib/psn/auth/exchangeAccessCodeForAuthTokens";
+import { exchangeRefreshTokenForAuthTokens } from "@/lib/psn/auth/exchangeRefreshTokenForAuthTokens";
 
 export async function getAuthenticationToken(): Promise<string> {
     // Check if a valid refresh token exists in the database
