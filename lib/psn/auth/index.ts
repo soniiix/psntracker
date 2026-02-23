@@ -25,8 +25,6 @@ export async function getAuthenticationToken(): Promise<string> {
         const accessCode = await exchangeNpssoForAccessCode(npsso);
         authTokens = await exchangeAccessCodeForAuthTokens(accessCode);
 
-        console.log("New auth tokens obtained:", authTokens);
-
         // Store new refresh token in Supabase DB
         const { error } = await supabase.from("psn_auth_tokens").insert({
             refresh_token: authTokens.refreshToken,
