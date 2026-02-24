@@ -4,7 +4,7 @@ import type { Profile } from "@/lib/types/profile";
 /**
  *
  * @param psnId 
- * @returns The profile information for the specified PSN ID. This includes the online ID, avatar URL, PS Plus status, about me section, and trophy summary. If the profile cannot be retrieved, an error is thrown with details about the failure.
+ * @returns The profile information for the specified PSN ID. This includes the online ID, avatar URL, if the user is a PS Plus member, about me section, and trophy summary. If the profile cannot be retrieved, an error is thrown with details about the failure.
  */
 export async function getProfileFromPsnId(psnId: string): Promise<Profile> {
     const accessToken = await getAuthenticationToken();
