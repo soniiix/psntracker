@@ -14,7 +14,7 @@ export default async function Profile({ params }: { params: Promise<{ psnId: str
     return (
         <div className="flex flex-col items-start justify-center max-w-[1000px] mx-auto pt-10 gap-5">
             <ProfilePageTop />
-            <ProfileHeader />
+            <ProfileHeader psnId={psnId}/>
         </div>
     );
 }
