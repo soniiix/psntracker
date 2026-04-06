@@ -8,6 +8,7 @@ export default function Home() {
     const searchParams = useSearchParams();
     const inputRef = useRef<HTMLInputElement>(null);
     const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (searchParams.get("focus") === "true") {
@@ -16,17 +17,21 @@ export default function Home() {
     }, [searchParams]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        setLoading(true);
+
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const psnId = formData.get("psn-id") as string;
     
         if (!psnId.trim()) {
             setError("Please enter a PSN ID.");
+            setLoading(false);
             return;
         }
 
         // Validate PSN ID format (alphanumeric, underscores, hyphens, 3-16 characters)
         if (!/^[a-zA-Z0-9_-]{3,16}$/.test(psnId)) {
+            setLoading(false);
             setError("Invalid PSN ID format. Please try again.");
             return;
         }
@@ -35,11 +40,16 @@ export default function Home() {
         try {
             const exists = await fetch(`/api/psn/search/${psnId}`).then(r => r.json());
 
-            if (!exists) return setError("PSN ID not found."); // If the PSN ID doesn't exist, show an error message
-            
+            if (!exists) {
+                setLoading(false);
+                setError("PSN ID not found."); // If the PSN ID doesn't exist, show an error message
+                return;
+            }
+
             router.push(`/profile/${psnId}`); // If the PSN ID exists, navigate to the profile page
 
         } catch (err: any) {
+            setLoading(false);
             setError("Something went wrong. Please try again.");
         }
     }
@@ -52,32 +62,43 @@ export default function Home() {
                 <h1 className="font-mont text-4xl sm:text-5xl mb-2">PSN TRACKER</h1>
                 <span className="text-2xl sm:text-3xl font-light">Track and analyze your PlayStation trophy progress.</span>
 
-                <form 
-                    className={`bg-secondary-bg focus-within:outline-2 focus-within:outline-offset-3 mt-8 pl-4 pr-1.5 py-1.5 rounded-normal text-neutral w-full max-w-[530px] text-lg flex flex-row items-center justify-between gap-2 ${error ? ' focus-within:outline-red-500' : 'focus-within:outline-blue'}`}
-                    onSubmit={handleSubmit}
-                >
-                    <div className="flex items-center gap-3 flex-1">
-                        <MagnifyingGlassIcon size={26} className="mt-0.5"/>
-                        <input 
-                            ref={inputRef}
-                            type="text" 
-                            name="psn-id"
-                            placeholder="Enter a PSN ID" 
-                            className="flex-1 min-w-0 w-full focus:outline-none placeholder:text-neutral text-white"
-                            autoComplete="off"
-                            onInput={() => setError(null)}
-                        />
+                {!loading && 
+                    <>
+                        <form 
+                            className={`bg-secondary-bg focus-within:outline-2 focus-within:outline-offset-3 mt-8 pl-4 pr-1.5 py-1.5 rounded-normal text-neutral w-full max-w-[530px] text-lg flex flex-row items-center justify-between gap-2 ${error ? ' focus-within:outline-red-500' : 'focus-within:outline-blue'}`}
+                            onSubmit={handleSubmit}
+                        >
+                            <div className="flex items-center gap-3 flex-1">
+                                <MagnifyingGlassIcon size={26} className="mt-0.5"/>
+                                <input 
+                                    ref={inputRef}
+                                    type="text" 
+                                    name="psn-id"
+                                    placeholder="Enter a PSN ID" 
+                                    className="flex-1 min-w-0 w-full focus:outline-none placeholder:text-neutral text-white"
+                                    autoComplete="off"
+                                    onInput={() => setError(null)}
+                                />
+                            </div>
+                            <button 
+                                type="submit" 
+                                className="bg-blue-gradient px-5 py-2 rounded-[10px] text-white cursor-pointer shrink-0 w-auto hover:opacity-90 transition-opacity"
+                            >
+                                Search
+                            </button>
+                        </form>
+                        {error && <div className="w-full max-w-[530px] text-red-500 text-lg mt-1">
+                            <span>Error: {error}</span>
+                        </div>}
+                    </>
+                }
+                {/* Loading bar */}
+                {loading && (
+                    <div className="w-full max-w-[280px] flex flex-col items-center mt-6">
+                        <span className="text-lg mb-0.5 text-neutral">Searching...</span>
+                        <div className="loading-bar"></div>
                     </div>
-                    <button 
-                        type="submit" 
-                        className="bg-blue-gradient px-5 py-2 rounded-[10px] text-white cursor-pointer shrink-0 w-auto hover:opacity-90 transition-opacity"
-                    >
-                        Search
-                    </button>
-                </form>
-                {error && <div className="w-full max-w-[530px] text-red-500 text-lg mt-2">
-                    <span>Error: {error}</span>
-                </div>}
+                )}
             </div>
 
             <div className="text-sm flex flex-row items-center justify-center gap-1.5 border px-3 py-1 rounded-[10px] border-neutral">

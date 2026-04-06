@@ -57,4 +57,40 @@
         background-image: linear-gradient(to left, #173FCF 0%, #1649FF 100%);
         z-index: 0;
     }
-}
+
+    .loading-bar {
+        width: 100%;
+        max-width: 300px;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    
+    .loading-bar::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.8) 50%,
+                transparent 70%);
+        animation: psn-loading 1.5s infinite linear;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    }
+    
+    @keyframes psn-loading {
+        0% {
+            left: -100%;
+        }
+    
+        100% {
+            left: 100%;
+        }
+    }
+    }
