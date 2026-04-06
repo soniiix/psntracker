@@ -23,12 +23,24 @@ export async function exchangeNpssoForAccessCode(npsso: string): Promise<string>
         throw new Error(`Unexpected response from Sony: ${response.statusText} (${response.status})`);
     }
 
-    const accessCode = new URLSearchParams(
-        locationHeader.split("?")[1]
-    ).get("code");
+    const redirectUrl = new URL(locationHeader);
+    const searchParams = redirectUrl.searchParams;
+
+    const accessCode = searchParams.get("code");
 
     if (!accessCode) {
-        throw new Error("Failed to extract access code from Sony response.");
+        const sonyError = searchParams.get("error");
+        const errorDescription = searchParams.get("error_description");
+
+        if (sonyError === "login_required" || errorDescription === "User is not authenticated") {
+            throw new Error(
+                "Sony authentication failed: the stored NPSSO is no longer authenticated. Reconnect your PlayStation account and try again."
+            );
+        }
+
+        throw new Error(
+            `Failed to extract access code from Sony response.${sonyError ? ` error=${sonyError}.` : ""}${errorDescription ? ` description=${errorDescription}.` : ""}`
+        );
     }
 
     return accessCode;
