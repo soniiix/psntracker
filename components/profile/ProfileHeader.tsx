@@ -69,34 +69,34 @@ export default async function ProfileHeader({ psnId }: { psnId: string }) {
                         <div className="w-14.5 h-17 flex items-end justify-center shrink-0">
                             <img src="/images/platinum-trophy.png" alt="Platinum trophy icon" className="block w-full h-full object-contain mb-0.25" />
                         </div>
-                        <span className="text-[22px] font-medium leading-none">{earnedTrophies?.platinum ?? 0}</span>
+                        <span className="text-[22px] leading-none">{earnedTrophies?.platinum ?? 0}</span>
                     </div>
                     {/* Gold trophies */}
                     <div className="flex items-end justify-center gap-2">
                         <div className="w-14.5 h-14.5 flex items-end justify-center shrink-0">
                             <img src="/images/gold-trophy.png" alt="Gold trophy icon" className="block w-full h-full object-contain" />
                         </div>
-                        <span className="text-[22px] font-medium leading-none">{earnedTrophies?.gold ?? 0}</span>
+                        <span className="text-[22px] leading-none">{earnedTrophies?.gold ?? 0}</span>
                     </div>
                     {/* Silver trophies */}
                     <div className="flex items-end justify-center gap-2">
                         <div className="w-14.5 h-14.5 flex items-end justify-center shrink-0">
                             <img src="/images/silver-trophy.png" alt="Silver trophy icon" className="block w-full h-full object-contain" />
                         </div>
-                        <span className="text-[22px] font-medium leading-none">{earnedTrophies?.silver ?? 0}</span>
+                        <span className="text-[22px] leading-none">{earnedTrophies?.silver ?? 0}</span>
                     </div>
                     {/* Bronze trophies */}
                     <div className="flex items-end justify-center gap-2">
                         <div className="w-14.5 h-14.5 flex items-end justify-center shrink-0">
                             <img src="/images/bronze-trophy.png" alt="Bronze trophy icon" className="block w-full h-full object-contain" />
                         </div>
-                        <span className="text-[22px] font-medium leading-none">{earnedTrophies?.bronze ?? 0}</span>
+                        <span className="text-[22px] leading-none">{earnedTrophies?.bronze ?? 0}</span>
                     </div>
                     
                     <div className="h-17.5 w-[1px] bg-divider"></div>
 
                     {/* Total trophies */}
-                    <div className="flex flex-col items-start justify-end gap-2.5">
+                    <div className="flex flex-col items-start justify-end gap-2">
                         <span className="text-neutral text-[22px] leading-none">Total</span>
                         <span className="text-[30px] font-medium leading-none">{totalTrophies}</span>
                     </div>
