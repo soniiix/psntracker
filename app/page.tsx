@@ -16,6 +16,12 @@ export default function Home() {
         }
     }, [searchParams]);
 
+    useEffect(() => {
+        if (!loading && error) {
+            inputRef.current?.focus();
+        }
+    }, [loading, error]);
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         setLoading(true);
 
