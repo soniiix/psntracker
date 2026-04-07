@@ -1,9 +1,12 @@
 import { getProfileFromPsnId } from "@/lib/psn/profile";
+import { getTrophyLevelImage } from "@/lib/utils/getTrophyLevelImage";
 import { trimAboutMe } from "@/lib/utils/trimAboutMe";
 
 export default async function ProfileHeader({ psnId }: { psnId: string }) {
     const profile = await getProfileFromPsnId(psnId);
 
+    const level = profile.trophySummary?.level ?? 0;
+    const trophyLevelImage = getTrophyLevelImage(level);
     const earnedTrophies = profile.trophySummary?.earnedTrophies;
     const totalTrophies =
         (earnedTrophies?.platinum ?? 0) +
@@ -37,7 +40,7 @@ export default async function ProfileHeader({ psnId }: { psnId: string }) {
                 </div>
                 {/* Trophy level */}
                 <div className="flex gap-5">
-                    <img src="/images/silver-level.png" alt="Avatar placeholder" className="w-22 h-22 rounded-full" />
+                    <img src={trophyLevelImage} alt="Trophy level icon" className="w-22 h-22 rounded-full" />
                     <div className="flex flex-col">
                         <span className="text-neutral -mb-1 text-[17px]">Level</span>
                         <div className="flex w-full items-end justify-between">
