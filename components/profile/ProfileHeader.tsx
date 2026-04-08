@@ -27,7 +27,9 @@ export default async function ProfileHeader({ psnId }: { psnId: string }) {
                     <div className="flex flex-col gap-3">
                         <div className="flex items-center justify-start gap-2.5">
                             <span className="text-3xl font-bold">{profile.onlineId}</span>
-                            <img src="/images/ps-plus-logo.png" alt="PlayStation Plus logo" className="h-7 mt-0.5" />
+                            {profile.isPsPlus && (
+                                <img src="/images/ps-plus-logo.png" alt="PlayStation Plus logo" className="h-7 mt-0.5" />
+                            )}
                         </div>
                         <span className={`text-xl text-neutral ${!profile.aboutMe ? 'italic' : ''}`}>
                             {trimAboutMe(profile.aboutMe) ?? "No about me."}
