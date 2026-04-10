@@ -10,6 +10,7 @@ export interface TrophySummary {
 }
 
 export interface Profile {
+    acccountId: string;
     onlineId: string;
     avatarUrl: string | null;
     isPsPlus: boolean;

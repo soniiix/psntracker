@@ -32,6 +32,7 @@ export async function getProfileFromPsnId(psnId: string): Promise<Profile> {
     const profile = data.profile ?? {};
 
     return {
+        acccountId: profile.accountId ?? "",
         onlineId: profile.onlineId ?? psnId,
         avatarUrl: profile.avatarUrls?.[0]?.avatarUrl ?? null,
         isPsPlus: profile.plus === 1,
