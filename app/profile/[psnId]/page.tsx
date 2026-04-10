@@ -3,6 +3,7 @@ import { searchPsnId } from "@/lib/psn/search";
 import ProfileHeader from "@/components/profile/ProfileHeader";
 import ProfilePageTop from "@/components/profile/ProfilePageTop";
 import ProfileStats from "@/components/profile/ProfileStats";
+import GameList from "@/components/profile/games/GameList";
 
 export default async function Profile({ params }: { params: Promise<{ psnId: string }> }) {
     const { psnId } = await params;
@@ -13,10 +14,11 @@ export default async function Profile({ params }: { params: Promise<{ psnId: str
     }
 
     return (
-        <div className="flex flex-col items-start justify-center max-w-[1000px] mx-auto pt-10 gap-5">
+        <div className="flex flex-col items-start justify-center max-w-[1000px] mx-auto py-10 gap-5">
             <ProfilePageTop />
             <ProfileHeader psnId={psnId}/>
             <ProfileStats />
+            <GameList />
         </div>
     );
 }
