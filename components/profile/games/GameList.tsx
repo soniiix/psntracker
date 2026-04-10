@@ -1,8 +1,10 @@
 "use client";
 
+import { ProfileGames } from "@/lib/types/profile-games";
 import { ArrowsDownUpIcon, GameControllerIcon } from "@phosphor-icons/react";
 
-export default function GameList() {
+export default function GameList({ profileGames }: { profileGames: ProfileGames }) {
+
     return (
         <section className="bg-secondary-bg w-full rounded-normal flex flex-col">
             {/* SECTION HEADER: total games displayed, and filters buttons */}
@@ -22,9 +24,16 @@ export default function GameList() {
 
             {/* GAME LIST */}
             <div className="flex flex-col divide-y-1 divide-divider h-full">
-                <div>gameCard 1</div>
-                <div>gameCard 2</div>
-                <div>gameCard 3</div>
+                {/* TODO: map through games and display them with GameCard component */}
+                {profileGames.length === 0 ? (
+                    <div className="p-6 text-center text-lg">No games found.</div>
+                ) : (
+                    profileGames.map((game) => (
+                        <div key={game.gameId} className="p-6">
+                            {game.name}
+                        </div>
+                    ))
+                )}
             </div>
         </section>
     );
