@@ -1,12 +1,9 @@
+import type { TrophyCounts } from "@/lib/types/trophy-counts";
+
 export interface TrophySummary {
     level: number;
     progress: number;
-    earnedTrophies: {
-        platinum: number;
-        gold: number;
-        silver: number;
-        bronze: number;
-    };
+    earnedTrophies: TrophyCounts;
 }
 
 export interface Profile {
