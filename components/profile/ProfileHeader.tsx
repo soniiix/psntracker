@@ -2,7 +2,7 @@ import type { Profile } from "@/lib/types/profile";
 import { getTrophyLevelImage } from "@/lib/utils/getTrophyLevelImage";
 import { trimAboutMe } from "@/lib/utils/trimAboutMe";
 
-export default async function ProfileHeader({ profile }: { profile: Profile }) {
+export default function ProfileHeader({ profile }: { profile: Profile }) {
     const level = profile.trophySummary?.level ?? 0;
     const trophyLevelImage = getTrophyLevelImage(level);
     const earnedTrophies = profile.trophySummary?.earnedTrophies;
