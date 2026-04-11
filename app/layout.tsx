@@ -33,6 +33,11 @@ const mont = localFont({
     variable: "--font-mont"
 })
 
+const rave = localFont({
+    src: '../public/fonts/TheRaveIsInYourPants.otf',
+    variable: "--font-rave"
+})
+
 export const metadata: Metadata = {
     title: "PSN Tracker",
     description: "Track and analyze your PlayStation trophy progress.",
@@ -46,7 +51,7 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`${sst.variable} ${mont.variable} antialiased`}
+            className={`${sst.variable} ${mont.variable} ${rave.variable} antialiased`}
         >
             <body className="font-sst bg-primary-bg text-white selection:bg-blue selection:text-white">{children}</body>
         </html>
