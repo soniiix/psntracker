@@ -17,6 +17,7 @@
 @theme inline {
     --font-sst: var(--font-sst);
     --font-mont: var(--font-mont);
+    --font-rave: var(--font-rave);
 }
 
 @layer utilities {
