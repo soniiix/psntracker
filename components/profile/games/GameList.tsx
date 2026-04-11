@@ -2,11 +2,12 @@
 
 import { ProfileGames } from "@/lib/types/profile-games";
 import { ArrowsDownUpIcon, GameControllerIcon } from "@phosphor-icons/react";
+import GameCard from "./GameCard";
 
 export default function GameList({ profileGames }: { profileGames: ProfileGames }) {
 
     return (
-        <section className="bg-secondary-bg w-full rounded-normal flex flex-col">
+        <section className="bg-secondary-bg w-full rounded-normal flex flex-col overflow-hidden">
             {/* SECTION HEADER: total games displayed, and filters buttons */}
             <div className="bg-alternate-bg rounded-t-normal flex items-center justify-between px-6 py-3.5">
                 <h2 className="text-[20px]">00 games displayed</h2>
@@ -29,9 +30,7 @@ export default function GameList({ profileGames }: { profileGames: ProfileGames 
                     <div className="p-6 text-center text-lg">No games found.</div>
                 ) : (
                     profileGames.map((game) => (
-                        <div key={game.gameId} className="p-6">
-                            {game.name}
-                        </div>
+                        <GameCard key={game.gameId} game={game} />
                     ))
                 )}
             </div>
