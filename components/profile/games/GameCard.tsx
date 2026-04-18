@@ -3,7 +3,6 @@ import { CalendarBlankIcon, CheckIcon, ClockIcon } from "@phosphor-icons/react";
 export default function GameCard({ game }: { game: any }) {
     const hasPlatinum = (game?.definedTrophies?.platinum ?? game?.earnedTrophies?.platinum ?? 0) > 0;
 
-    console.log(game);
     return (
         <div className="flex w-full">
             <div className="w-30 h-30 bg-alternate-bg/50 flex items-center justify-center flex-shrink-0">

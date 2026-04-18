@@ -1,5 +1,11 @@
 import type { TrophyCounts } from "@/lib/types/trophy-counts";
 
+export interface ProfileGamesResponse {
+    trophyTitles: ProfileGames;
+    nextOffset: number | null;
+    totalItemCount: number;
+}
+
 export type ProfileGames = Game[];
 
 export interface Game {
