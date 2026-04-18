@@ -2,6 +2,7 @@ import { CalendarBlankIcon, CheckIcon, ClockIcon } from "@phosphor-icons/react";
 
 export default function GameCard({ game }: { game: any }) {
     const hasPlatinum = (game?.definedTrophies?.platinum ?? game?.earnedTrophies?.platinum ?? 0) > 0;
+    const isCompleted = (game.progress ?? 0) >= 100;
 
     return (
         <div className="flex w-full">
@@ -52,7 +53,7 @@ export default function GameCard({ game }: { game: any }) {
                                 />
                             </div>
                             ) : (
-                                <div className="bg-emerald-500/10  p-1.5 rounded-full -mr-1.5 ">
+                                <div className={`bg-emerald-500/10 p-1.5 rounded-full -mr-1.5 ${isCompleted ? 'opacity-100' : 'opacity-10'}`}>
                                     <CheckIcon size={24} weight="bold" className="text-green-400" />
                                 </div>
                             )}
