@@ -12,28 +12,39 @@ export async function getAuthenticationToken(): Promise<string> {
         .limit(1)
         .single();
 
-    let authTokens;
-
-    // If a valid refresh token exists, use it to get new auth tokens
-    if (data && new Date(data.refresh_token_expires_at) > new Date()) {
-        authTokens = await exchangeRefreshTokenForAuthTokens(data.refresh_token);
-    } else {
-        // Otherwise, exchange NPSSO for access code, then for auth tokens
+    // Fallback flow used when no valid stored refresh token exists,
+    // or when refresh token exchange fails (e.g. token revoked/expired server-side).
+    const authenticateWithNpsso = async () => {
         const npsso = process.env.PSN_NPSSO;
         if (!npsso) throw new Error("Missing NPSSO.");
 
         const accessCode = await exchangeNpssoForAccessCode(npsso);
-        authTokens = await exchangeAccessCodeForAuthTokens(accessCode);
+        const tokens = await exchangeAccessCodeForAuthTokens(accessCode);
 
-        // Store new refresh token in Supabase DB
-        const { error } = await supabase.from("psn_auth_tokens").insert({
-            refresh_token: authTokens.refreshToken,
-            refresh_token_expires_at: new Date(Date.now() + authTokens.refreshTokenExpiresIn * 1000)
+        // Persist latest refresh token for next calls so we can avoid full NPSSO exchange.
+        const { error: insertError } = await supabase.from("psn_auth_tokens").insert({
+            refresh_token: tokens.refreshToken,
+            refresh_token_expires_at: new Date(Date.now() + tokens.refreshTokenExpiresIn * 1000)
         });
 
-        if (error) {
-            throw new Error(`Failed to store new auth tokens in DB: ${error.message}`);
+        if (insertError) {
+            throw new Error(`Failed to store new auth tokens in DB: ${insertError.message}`);
         }
+
+        return tokens;
+    };
+
+    let authTokens;
+
+    // If a valid refresh token exists, try it first. If it fails (e.g. revoked/expired server-side), fall back to full NPSSO exchange.
+    if (data && new Date(data.refresh_token_expires_at) > new Date()) {
+        try {
+            authTokens = await exchangeRefreshTokenForAuthTokens(data.refresh_token);
+        } catch {
+            authTokens = await authenticateWithNpsso();
+        }
+    } else {
+        authTokens = await authenticateWithNpsso();
     }
 
     return authTokens.accessToken;
