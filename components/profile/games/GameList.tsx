@@ -110,7 +110,11 @@ export default function GameList({
                 )}
 
                 {error && <div className="px-6 py-4 text-center text-red-300">{error}</div>}
-                {isLoading && <div className="px-6 py-4 text-center text-neutral">Loading more games...</div>}
+                {isLoading && (
+                    <div className="w-full flex flex-col items-center justify-center py-2">
+                        <div className="loading-bar max-w-[200px] my-5"></div>
+                    </div>
+                )}
             </div>
 
             {nextOffset !== null && <div ref={loadMoreRef} className="h-1" />}

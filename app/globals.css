@@ -61,13 +61,11 @@
 
     .loading-bar {
         width: 100%;
-        max-width: 300px;
         height: 3px;
         background: rgba(255, 255, 255, 0.1);
         position: relative;
         overflow: hidden;
         border-radius: 10px;
-        margin-top: 20px;
     }
     
     .loading-bar::after {

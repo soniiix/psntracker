@@ -102,7 +102,7 @@ export default function Home() {
                 {loading && (
                     <div className="w-full max-w-[280px] flex flex-col items-center mt-6">
                         <span className="text-lg mb-0.5 text-neutral">Searching...</span>
-                        <div className="loading-bar"></div>
+                        <div className="loading-bar max-w-[300px] mt-5"></div>
                     </div>
                 )}
             </div>
