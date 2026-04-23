@@ -1,6 +1,5 @@
 import { getAuthenticationToken } from "@/lib/psn/auth/index";
 import type { Profile } from "@/lib/types/profile";
-import { getFirstActivityYearFromAccountId } from "@/lib/psn/profile/first-activity";
 
 /**
  * Retrieves the profile information for a specified PSN ID.
@@ -33,8 +32,6 @@ export async function getProfileFromPsnId(psnId: string): Promise<Profile> {
     const profile = data.profile ?? {};
     const accountId = profile.accountId ?? "";
 
-    const firstActivityYear = accountId ? await getFirstActivityYearFromAccountId(accountId) : null;
-
     return {
         accountId,
         onlineId: profile.onlineId ?? psnId,
@@ -48,6 +45,5 @@ export async function getProfileFromPsnId(psnId: string): Promise<Profile> {
                 earnedTrophies: profile.trophySummary.earnedTrophies,
             }
             : null,
-        firstActivityYear,
     };
 }

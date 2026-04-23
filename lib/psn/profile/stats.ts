@@ -11,6 +11,7 @@ export async function getProfileStatsFromAccountId(accountId: string): Promise<P
             completedGames: 0,
             completionRate: 0,
             trophiesPerDay: 0,
+            firstActivityYear: null,
         };
     }
 
@@ -46,6 +47,7 @@ export async function getProfileStatsFromAccountId(accountId: string): Promise<P
         .map((game) => new Date(game.lastUpdatedDateTime).getTime())
         .filter((time) => Number.isFinite(time));
     const firstActivity = timestamps.length > 0 ? Math.min(...timestamps) : Date.now();
+    const firstActivityYear = timestamps.length > 0 ? new Date(firstActivity).getFullYear() : null;
     const daysActive = Math.max(1, Math.ceil((Date.now() - firstActivity) / (1000 * 60 * 60 * 24)));
     const trophiesPerDay = totalEarnedTrophies / daysActive;
 
@@ -54,5 +56,6 @@ export async function getProfileStatsFromAccountId(accountId: string): Promise<P
         completedGames,
         completionRate,
         trophiesPerDay,
+        firstActivityYear,
     };
 }
