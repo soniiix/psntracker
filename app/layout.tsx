@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 const sst = localFont({
     src: [
@@ -53,7 +54,10 @@ export default function RootLayout({
             lang="en"
             className={`${sst.variable} ${mont.variable} ${rave.variable} antialiased`}
         >
-            <body className="font-sst bg-primary-bg text-white selection:bg-blue selection:text-white">{children}</body>
+            <body className="font-sst bg-primary-bg text-white selection:bg-blue selection:text-white">
+                {children}
+                <ScrollToTopButton />
+            </body>
         </html>
     );
 }
