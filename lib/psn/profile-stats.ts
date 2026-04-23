@@ -15,7 +15,27 @@ export async function getProfileStatsFromAccountId(accountId: string): Promise<P
     }
 
     const completedGames = allGames.filter((game) => (game.progress ?? 0) >= 100).length;
-    const completionRate = (completedGames / gamesPlayed) * 100;
+
+    // Calculate completion rate based on trophy points (excluding platinum)
+    const pointValues = { bronze: 15, silver: 30, gold: 90 };
+    
+    const earnedPoints = allGames.reduce((acc, game) => {
+        const earned = game.earnedTrophies ?? { bronze: 0, silver: 0, gold: 0, platinum: 0 };
+        return acc + 
+            (earned.bronze ?? 0) * pointValues.bronze +
+            (earned.silver ?? 0) * pointValues.silver +
+            (earned.gold ?? 0) * pointValues.gold;
+    }, 0);
+
+    const totalPoints = allGames.reduce((acc, game) => {
+        const defined = game.definedTrophies ?? { bronze: 0, silver: 0, gold: 0, platinum: 0 };
+        return acc + 
+            (defined.bronze ?? 0) * pointValues.bronze +
+            (defined.silver ?? 0) * pointValues.silver +
+            (defined.gold ?? 0) * pointValues.gold;
+    }, 0);
+
+    const completionRate = totalPoints > 0 ? (earnedPoints / totalPoints) * 100 : 0;
 
     const totalEarnedTrophies = allGames.reduce((acc, game) => {
         const earned = game.earnedTrophies ?? {};
