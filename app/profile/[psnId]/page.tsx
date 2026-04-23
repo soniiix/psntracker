@@ -26,7 +26,7 @@ export default async function Profile({ params }: { params: Promise<{ psnId: str
     return (
         <div className="flex flex-col items-start justify-center max-w-[1000px] mx-auto py-10 gap-5">
             <ProfilePageTop />
-            <ProfileHeader profile={profile} />
+            <ProfileHeader profile={profile} firstActivityYear={profileStats.firstActivityYear} />
             <ProfileStats stats={profileStats} />
             <GameList
                 accountId={profile.accountId}
