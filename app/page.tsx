@@ -27,9 +27,9 @@ export default function Home() {
 
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        const psnId = formData.get("psn-id") as string;
+        const psnId = (formData.get("psn-id") as string)?.trim();
     
-        if (!psnId.trim()) {
+        if (!psnId) {
             setError("Please enter a PSN ID.");
             setLoading(false);
             return;
