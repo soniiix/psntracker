@@ -18,11 +18,20 @@ export default function GameCard({ game }: { game: any }) {
                 <div className="flex items-center justify-between">
                     <div className="flex flex-col gap-1">
                         <h3 className="text-[20px] font-medium">{game.name}</h3>
-                        <div className="flex items-center gap-3">
-                            <span className={`${game.platform === 'PS5' ? 'bg-white text-black' : 'text-white bg-black ring-[0.25px] ring-[#A4A4A4]'} px-2 py-[2.5px] rounded-sm text-[11px] font-rave`}>
-                                {game.platform}
-                            </span>
-                            <div className="flex items-center text-neutral gap-1.5">
+                        <div className="flex items-center gap-1">
+                            {(game.platform ?? "")
+                                .split(",")
+                                .map((p: string) => p.trim())
+                                .filter(Boolean)
+                                .map((platform: string) => (
+                                    <span
+                                        key={platform}
+                                        className={`${platform === "PS5" ? "bg-white text-black" : "text-white bg-black ring-[0.25px] ring-[#A4A4A4]"} px-2 py-[2.5px] rounded-sm text-[11px] font-rave`}
+                                    >
+                                        {platform}
+                                    </span>
+                                ))}
+                            <div className="flex items-center text-neutral gap-1.5 ml-2">
                                 <ClockIcon size={19} className="-mb-0.5" />
                                 <span className="text-[17px]">00h played</span>
                             </div>
