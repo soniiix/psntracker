@@ -13,7 +13,7 @@ export default function ProfilePageTop() {
 
             <Link
                 href={"/?focus=true"}
-                className="bg-secondary-bg pl-4 pr-1.5 py-1.5 rounded-normal text-neutral w-full text-lg flex flex-row items-center justify-between gap-2 hover:cursor-pointer"
+                className="bg-secondary-bg pl-4 pr-1.5 py-1.5 rounded-normal text-neutral w-full text-lg flex flex-row items-center justify-between gap-2 hover:cursor-pointer hover:brightness-105 transition-all duration-300"
             >
                 <div className="flex items-center gap-3 flex-1">
                     <MagnifyingGlassIcon size={26} className="mt-0.5" />

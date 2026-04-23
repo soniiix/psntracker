@@ -88,7 +88,7 @@ export default function Home() {
                             </div>
                             <button 
                                 type="submit" 
-                                className="bg-blue-gradient px-5 py-2 rounded-[10px] text-white cursor-pointer shrink-0 w-auto hover:opacity-90 transition-opacity"
+                                className="bg-blue-gradient px-5 py-2 rounded-[10px] text-white cursor-pointer shrink-0 w-auto hover:brightness-110 transition-all duration-300"
                             >
                                 Search
                             </button>

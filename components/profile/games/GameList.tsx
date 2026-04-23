@@ -88,11 +88,11 @@ export default function GameList({
             <div className="bg-alternate-bg rounded-t-normal flex items-center justify-between px-6 py-3.5">
                 <h2 className="text-[20px]">{games.length} games displayed</h2>
                 <div className="flex items-center gap-3">
-                    <button className="px-4 py-1.5 text-lg bg-[#3E4555] text-white rounded-xl flex items-center justify-center gap-2 cursor-pointer">
+                    <button className="px-4 py-1.5 text-lg bg-[#3E4555] text-white rounded-xl flex items-center justify-center gap-2 cursor-pointer hover:brightness-110 transition-all duration-300">
                         <ArrowsDownUpIcon size={20} className="-mb-0.5 -ml-0.5" />
                         Sort (last played)
                     </button>
-                    <button className="px-4 py-1.5 text-lg bg-[#3E4555] text-white rounded-xl flex items-center justify-center gap-2 cursor-pointer">
+                    <button className="px-4 py-1.5 text-lg bg-[#3E4555] text-white rounded-xl flex items-center justify-center gap-2 cursor-pointer hover:brightness-110 transition-all duration-300">
                         <GameControllerIcon size={20} className="" />
                         Platform (all)
                     </button>
