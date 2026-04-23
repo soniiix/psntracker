@@ -1,4 +1,4 @@
-import { getAllProfileGamesFromAccountId } from "@/lib/psn/profile-games";
+import { getAllProfileGamesFromAccountId } from "@/lib/psn/profile/games";
 import { ProfileStats } from "@/lib/types/profile-stats";
 
 export async function getProfileStatsFromAccountId(accountId: string): Promise<ProfileStats> {

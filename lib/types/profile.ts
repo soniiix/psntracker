@@ -13,4 +13,5 @@ export interface Profile {
     isPsPlus: boolean;
     aboutMe: string;
     trophySummary: TrophySummary | null;
+    firstActivityYear: number | null;
 }

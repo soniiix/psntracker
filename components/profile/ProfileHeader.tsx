@@ -34,7 +34,9 @@ export default function ProfileHeader({ profile }: { profile: Profile }) {
                         </span>
                         <div className="flex items-center justify-start gap-2.5">
                             <img src="/images/ps-logo.png" alt="PlayStation logo" className="h-4 mt-0.5" />
-                            <span className="text-xl">Joined PSN in 2022</span>
+                            <span className="text-xl">
+                                Joined PSN in {profile.firstActivityYear ?? "unknown"}
+                            </span>
                         </div>
                     </div>
                 </div>

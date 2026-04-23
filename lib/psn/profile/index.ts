@@ -1,8 +1,9 @@
 import { getAuthenticationToken } from "@/lib/psn/auth/index";
 import type { Profile } from "@/lib/types/profile";
+import { getFirstActivityYearFromAccountId } from "@/lib/psn/profile/first-activity";
 
 /**
- *
+ * Retrieves the profile information for a specified PSN ID.
  * @param psnId 
  * @returns The profile information for the specified PSN ID. This includes the online ID, avatar URL, if the user is a PS Plus member, about me section, and trophy summary. If the profile cannot be retrieved, an error is thrown with details about the failure.
  */
@@ -30,9 +31,12 @@ export async function getProfileFromPsnId(psnId: string): Promise<Profile> {
 
     const data = await response.json();
     const profile = data.profile ?? {};
+    const accountId = profile.accountId ?? "";
+
+    const firstActivityYear = accountId ? await getFirstActivityYearFromAccountId(accountId) : null;
 
     return {
-        accountId: profile.accountId ?? "",
+        accountId,
         onlineId: profile.onlineId ?? psnId,
         avatarUrl: profile.avatarUrls?.[0]?.avatarUrl ?? null,
         isPsPlus: profile.plus === 1,
@@ -44,5 +48,6 @@ export async function getProfileFromPsnId(psnId: string): Promise<Profile> {
                 earnedTrophies: profile.trophySummary.earnedTrophies,
             }
             : null,
+        firstActivityYear,
     };
 }

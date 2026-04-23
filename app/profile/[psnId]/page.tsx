@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { searchPsnId } from "@/lib/psn/search";
 import { getProfileFromPsnId } from "@/lib/psn/profile";
-import { getProfileGamesFromAccountId } from "@/lib/psn/profile-games";
-import { getProfileStatsFromAccountId } from "@/lib/psn/profile-stats";
+import { getProfileGamesFromAccountId } from "@/lib/psn/profile/games";
+import { getProfileStatsFromAccountId } from "@/lib/psn/profile/stats";
 import ProfileHeader from "@/components/profile/ProfileHeader";
 import ProfilePageTop from "@/components/profile/ProfilePageTop";
 import ProfileStats from "@/components/profile/ProfileStats";
