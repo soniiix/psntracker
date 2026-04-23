@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getProfileGamesFromAccountId } from "@/lib/psn/profile-games";
+import { getProfileGamesFromAccountId } from "@/lib/psn/profile/games";
 
 export async function GET(
     request: Request,
