@@ -1,3 +1,4 @@
+import { trimString } from "@/lib/utils/trimString";
 import { CalendarBlankIcon, CheckIcon, ClockIcon } from "@phosphor-icons/react";
 
 export default function GameCard({ game }: { game: any }) {
@@ -17,7 +18,9 @@ export default function GameCard({ game }: { game: any }) {
                 {/* GAME INFO */}
                 <div className="flex items-center justify-between">
                     <div className="flex flex-col gap-1">
-                        <h3 className="text-[20px] font-medium">{game.name}</h3>
+                        <h3 className="text-[20px] font-medium" title={game.name}>
+                            {trimString(game.name, 40)}
+                        </h3>
                         <div className="flex items-center gap-1">
                             {(game.platform ?? "")
                                 .split(",")
@@ -46,7 +49,7 @@ export default function GameCard({ game }: { game: any }) {
                 </div>
 
                 {/* TROPHIES */}
-                <div className="flex flex-col h-full w-80 justify-center gap-5.5">
+                <div className="flex flex-col h-full min-w-80 justify-center gap-5.5">
                     {/* TROPHIES EARNED / TOTAL */}
                     <div className="flex items-center justify-between gap-2">
                         {/* Platinum */}
