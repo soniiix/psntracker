@@ -1,6 +1,6 @@
 import type { Profile } from "@/lib/types/profile";
 import { getTrophyLevelImage } from "@/lib/utils/getTrophyLevelImage";
-import { trimAboutMe } from "@/lib/utils/trimAboutMe";
+import { trimString } from "@/lib/utils/trimString";
 
 export default function ProfileHeader({ profile }: { profile: Profile }) {
     const level = profile.trophySummary?.level ?? 0;
@@ -30,7 +30,7 @@ export default function ProfileHeader({ profile }: { profile: Profile }) {
                             )}
                         </div>
                         <span className={`text-xl text-neutral ${!profile.aboutMe ? 'italic' : ''}`}>
-                            {trimAboutMe(profile.aboutMe) ?? "No about me."}
+                            {trimString(profile.aboutMe) ?? "No about me."}
                         </span>
                         <div className="flex items-center justify-start gap-2.5">
                             <img src="/images/ps-logo.png" alt="PlayStation logo" className="h-4 mt-0.5" />
