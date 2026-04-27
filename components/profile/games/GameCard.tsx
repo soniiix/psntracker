@@ -75,7 +75,7 @@ export default function GameCard({ game }: { game: any }) {
                             <div className="w-8 h-9 flex items-end justify-center shrink-0">
                                 <img src="/images/gold-trophy.png" alt="Gold trophy icon" className="block w-full h-full object-contain" />
                             </div>
-                            <div className="leading-none -mb-1">
+                            <div className="leading-none -mb-1.25">
                                 <span className="font-medium text-lg">
                                     {game.earnedTrophies?.gold ?? 0}
                                 </span>
@@ -87,7 +87,7 @@ export default function GameCard({ game }: { game: any }) {
                             <div className="w-8 h-9 flex items-end justify-center shrink-0">
                                 <img src="/images/silver-trophy.png" alt="Silver trophy icon" className="block w-full h-full object-contain" />
                             </div>
-                            <div className="leading-none -mb-1">
+                            <div className="leading-none -mb-1.25">
                                 <span className="font-medium text-lg">
                                     {game.earnedTrophies?.silver ?? 0}
                                 </span>
@@ -99,7 +99,7 @@ export default function GameCard({ game }: { game: any }) {
                             <div className="w-8 h-9 flex items-end justify-center shrink-0">
                                 <img src="/images/bronze-trophy.png" alt="Bronze trophy icon" className="block w-full h-full object-contain" />
                             </div>
-                            <div className="leading-none -mb-1">
+                            <div className="leading-none -mb-1.25">
                                 <span className="font-medium text-lg">
                                     {game.earnedTrophies?.bronze ?? 0}
                                 </span>
